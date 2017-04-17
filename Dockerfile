@@ -1,24 +1,9 @@
-FROM heroku/cedar:14
+FROM elixir:1.4.2
 
-ENV ELIXIR_VERSION="1.3.2-1" \
-    LANG=C.UTF-8 \
+ENV LANG=C.UTF-8 \
     NPM_CONFIG_LOGLEVEL=info \
     NODE_VERSION=6.5.0 \
     PHANTOMJS_VERSION=2.1.12
-
-RUN mkdir /deb
-RUN cd /deb \
-  && wget --quiet \
-  https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
-  && dpkg -i erlang-solutions_1.0_all.deb
-
-RUN apt-get update && \
-  apt-get install -y --no-install-recommends \
-  erlang \
-  erlang-dev \
-  erlang-doc \
-  erlang-src \
-  elixir=$ELIXIR_VERSION
 
 # NODE
 # gpg keys listed at https://github.com/nodejs/node
